@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
+import Loader from '../Loader/Loader';
 import ImageIcon from '../ImageIcon/ImageIcon';
 import paperclipImg from '../../assets/img/paperclip.svg';
 import styles from './WordForm.module.scss';
@@ -37,21 +38,28 @@ const WordForm = (): JSX.Element => {
 
   return (
     <form className={styles.form}>
-      <div className={styles.container}>
+      <div>
         <label htmlFor="word">
           <p>Введи слово на русском языке:</p>
           <input type="text" id="word" name="word" />
         </label>
       </div>
-      <div className={styles.container}>
+      <div>
         <label htmlFor="picture">
           <p>Добавь картинку, которая соответствует этому слову:</p>
           <ImageIcon src={paperclipImg} alt="иконка для загрузки файла с изображением" size="small" color="black" />
           <input type="file" id="picture" name="picture" onChange={onUploadImage} />
         </label>
       </div>
-      <div>{isLoading ? <p>Загрузка...</p> : <img src={image} alt="картинка для слова" />}</div>
-      {/* <button type="submit">Хочу добавить это слово</button> */}
+
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <img src={image} alt="картинка для слова" />
+      )}
+      {/* <input type="submit">Хочу добавить это слово</input> */}
       <div className={styles.button}>
         <Button text="Хочу добавить это слово" />
       </div>
