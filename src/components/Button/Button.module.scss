@@ -3,8 +3,9 @@
 .button {
   display: inline-block;
   background-color: $light;
+  color: $dark;
   padding: 1rem 2rem;
-  border: 1px solid $dark;
+  border: $border;
   border-radius: 50px;
   line-height: 1rem;
   font-size: 1.1rem;

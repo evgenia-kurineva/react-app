@@ -1,0 +1,34 @@
+@import '../../constants/variables';
+
+.root {
+  background: $light;
+  border: $border;
+  max-width: 420px;
+  padding: 3rem 2rem 2rem;
+  margin: 0.5rem;
+
+  .container {
+    display: flex;
+
+    .container_right {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1.5rem;
+
+      .icon {
+        padding-bottom: 3rem;
+        cursor: pointer;
+      }
+    }
+  }
+  .examples {
+    margin: 0.5rem;
+    padding-top: 1.5rem;
+  }
+  .bold {
+    font-weight: $fontWeight;
+  }
+  .margin {
+    margin: 0.5rem 0;
+  }
+}

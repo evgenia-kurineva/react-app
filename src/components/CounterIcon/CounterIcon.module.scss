@@ -1,0 +1,14 @@
+@import '../../constants/variables';
+
+.counter {
+  display: inline-block;
+  background-color: $light;
+  padding: 1rem;
+  margin: 0.3rem;
+  border: $border_red;
+  border-radius: 50%;
+  line-height: 1rem;
+  font-size: 1.1rem;
+  font-weight: $fontWeight;
+  color: $red;
+}
