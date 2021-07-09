@@ -2,8 +2,9 @@ import React from 'react';
 // import axios from 'axios';
 import CounterIcon from '../../components/CounterIcon/CounterIcon';
 // import WordCard from '../../components/WordCard/WordCard';
-import styles from './Textbook.module.scss';
 import WordForm from '../../components/WordForm/WordForm';
+
+import styles from './Textbook.module.scss';
 
 const Textbook = (): JSX.Element => {
   const url = process.env.REACT_APP_IBM_CLOUD_URL;
