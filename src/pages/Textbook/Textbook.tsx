@@ -1,14 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 // import axios from 'axios';
 import CounterIcon from '../../components/CounterIcon/CounterIcon';
 // import WordCard from '../../components/WordCard/WordCard';
 import WordForm from '../../components/WordForm/WordForm';
-
+import {
+  currentImage,
+  currentWordEN,
+  currentWordRU,
+  quantityNotEnteredWords,
+} from '../../features/textbook/textbookSlice';
 import styles from './Textbook.module.scss';
 
 const Textbook = (): JSX.Element => {
-  const url = process.env.REACT_APP_IBM_CLOUD_URL;
-  console.log('url', url);
+  const wordsQuantity = useSelector(quantityNotEnteredWords);
+  const wordRU = useSelector(currentWordRU);
+  const wordEN = useSelector(currentWordEN);
+  const wordImg = useSelector(currentImage);
+  console.log(wordRU, wordEN, wordImg);
+  // const url = process.env.REACT_APP_IBM_CLOUD_URL;
+  // console.log('url', url);
   // const credentials = `apikey:${process.env.REACT_APP_IBM_CLOUD_API_KEY}`;
   // console.log('credentials', credentials);
   // const base64Credentials = btoa(unescape(encodeURIComponent(credentials)));
@@ -52,7 +63,7 @@ const Textbook = (): JSX.Element => {
     <div>
       <div className={styles.container}>
         <h3>
-          Введи <CounterIcon count={10} /> слов на русском языке.
+          Введи <CounterIcon count={wordsQuantity} /> слов на русском языке.
         </h3>
         <WordForm />
       </div>

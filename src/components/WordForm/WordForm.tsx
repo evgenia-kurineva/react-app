@@ -1,17 +1,28 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '../Button/Button';
 import FormError from '../FormError/FormError';
 import Loader from '../Loader/Loader';
 import ImageIcon from '../ImageIcon/ImageIcon';
 import paperclipImg from '../../assets/img/paperclip.svg';
+import {
+  currentImage,
+  isLoading,
+  fetchImage,
+  fetchENWord,
+  errorMessage,
+  setErrorMessage,
+} from '../../features/textbook/textbookSlice';
 import styles from './WordForm.module.scss';
 
 const WordForm = (): JSX.Element => {
-  const [image, setImage] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState('');
+  const dispatch = useDispatch();
+
+  const image = useSelector(currentImage);
+  const isImageLoading = useSelector(isLoading);
+  const error = useSelector(errorMessage);
 
   const validFileFormats = ['image/jpg', 'image/jpeg', 'image/png'];
 
@@ -28,47 +39,17 @@ const WordForm = (): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onUploadImage = async (event: any, setFieldValue: any) => {
     setFieldValue('picture', event.currentTarget.files[0], true);
-    setError('');
-    const url = process.env.REACT_APP_CLOUDINARY_API_ENDPOINT;
-    if (!url) {
-      // eslint-disable-next-line no-console
-      console.error('Error: no url!');
+    dispatch(setErrorMessage(''));
+    const file = event.target.files[0];
+    if (!file) {
+      dispatch(setErrorMessage('Выбери файл!'));
       return;
     }
-    const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-    if (!uploadPreset) {
-      // eslint-disable-next-line no-console
-      console.error('Error: no upload preset!');
+    if (!validFileFormats.includes(file.type)) {
+      dispatch(setErrorMessage('Тип файла должен быть jpg, jpeg или png!'));
       return;
     }
-    const { files } = event.target;
-    if (!files[0]) {
-      setError('Выбери файл!');
-      return;
-    }
-    if (!validFileFormats.includes(files[0].type)) {
-      setError('Тип файла должен быть jpg, jpeg или png!');
-      return;
-    }
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', uploadPreset);
-    setIsLoading(true);
-
-    fetch(url, {
-      method: 'post',
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        // надо будет сохранить в redux картинку res.secure_url
-        console.log('Success:', res);
-        setImage(res.secure_url);
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.error('Error:', err));
-
-    setIsLoading(false);
+    dispatch(fetchImage(file));
   };
 
   return (
@@ -80,9 +61,8 @@ const WordForm = (): JSX.Element => {
       validationSchema={validationsSchema}
       validateOnBlur
       onSubmit={(values) => {
-        // надо будет сохранить в redux word
-        // {word: "котенок", picture: File}
-        console.log(values);
+        const { word } = values;
+        dispatch(fetchENWord(word.toLowerCase()));
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, setFieldValue }) => (
@@ -127,7 +107,7 @@ const WordForm = (): JSX.Element => {
           {touched.picture && errors.picture && <FormError message={errors.picture} />}
           {error && <FormError message={error} />}
 
-          {isLoading && (
+          {isImageLoading && (
             <div>
               <Loader />
             </div>
