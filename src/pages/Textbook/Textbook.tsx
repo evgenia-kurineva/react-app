@@ -1,63 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-// import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import CounterIcon from '../../components/CounterIcon/CounterIcon';
 // import WordCard from '../../components/WordCard/WordCard';
 import WordForm from '../../components/WordForm/WordForm';
-import {
-  currentImage,
-  currentWordEN,
-  currentWordRU,
-  quantityNotEnteredWords,
-} from '../../features/textbook/textbookSlice';
+import { quantityNotEnteredWords } from '../../features/wordForm/wordFormSlice';
+import { setWordCards, wordCards } from '../../features/textbook/textbookSlice';
 import styles from './Textbook.module.scss';
 
 const Textbook = (): JSX.Element => {
-  const wordsQuantity = useSelector(quantityNotEnteredWords);
-  const wordRU = useSelector(currentWordRU);
-  const wordEN = useSelector(currentWordEN);
-  const wordImg = useSelector(currentImage);
-  console.log(wordRU, wordEN, wordImg);
-  // const url = process.env.REACT_APP_IBM_CLOUD_URL;
-  // console.log('url', url);
-  // const credentials = `apikey:${process.env.REACT_APP_IBM_CLOUD_API_KEY}`;
-  // console.log('credentials', credentials);
-  // const base64Credentials = btoa(unescape(encodeURIComponent(credentials)));
+  const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   if (!url) {
-  //     // eslint-disable-next-line no-console
-  //     console.log('Error: No url');
-  //     return;
-  //   }
-  //   const json = JSON.stringify({ text: ['Арбуз'], model_id: 'ru-en' });
-  //   axios
-  //     .post(url, json, {
-  //       headers: {
-  //         'Content-type': 'Application/json',
-  //         Authorization: `Basic ${base64Credentials}`,
-  //       },
-  //     })
-  //     .then(
-  //       (response) => {
-  //         const resp = response.data;
-  //         console.log(resp);
-  // ///////////////////////////
-  // ЕXAMPLE resp ///////////////////
-  // {translations: [{translation: "Watermelon"}], word_count: 1, character_count: 5}
-  // character_count: 5
-  // translations: [{translation: "Watermelon"}]
-  // 0: {translation: "Watermelon"}
-  // translation: "Watermelon"
-  // word_count: 1
-  //       },
-  // ///////////////////////////
-  //       (error) => {
-  //         // eslint-disable-next-line no-console
-  //         console.log(error);
-  //       },
-  //     );
-  // }, []);
+  const wordsQuantity = useSelector(quantityNotEnteredWords);
+  const cards = useSelector(wordCards);
+  console.log('cards', cards);
+
+  React.useEffect(() => {
+    if (window.localStorage.getItem('cards') !== null) {
+      const newValue = window.localStorage.getItem('cards');
+      if (newValue !== null) {
+        const newValueArr = JSON.parse(newValue);
+        dispatch(setWordCards(newValueArr));
+      }
+    }
+  }, []);
 
   return (
     <div>
@@ -65,7 +30,7 @@ const Textbook = (): JSX.Element => {
         <h3>
           Введи <CounterIcon count={wordsQuantity} /> слов на русском языке.
         </h3>
-        <WordForm />
+        <WordForm cards={cards} />
       </div>
       {/* <WordCard
         imgSrc={image}

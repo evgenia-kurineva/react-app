@@ -14,23 +14,39 @@ import {
   fetchENWord,
   errorMessage,
   setErrorMessage,
-} from '../../features/textbook/textbookSlice';
+  newWordCard,
+  isSubmitted,
+  setIsSubmitted,
+} from '../../features/wordForm/wordFormSlice';
+import { setWordCards } from '../../features/textbook/textbookSlice';
+import { WordCard } from '../../types/types';
+import { getRUWordsArr } from '../../utils/getRUWordsArr';
+
 import styles from './WordForm.module.scss';
 
-const WordForm = (): JSX.Element => {
+type WordFormProps = {
+  cards: Array<WordCard>;
+};
+
+const WordForm = ({ cards }: WordFormProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const image = useSelector(currentImage);
   const isImageLoading = useSelector(isLoading);
   const error = useSelector(errorMessage);
+  const newCard = useSelector(newWordCard);
+  const isDataSubmitted = useSelector(isSubmitted);
 
   const validFileFormats = ['image/jpg', 'image/jpeg', 'image/png'];
+
+  const ruWords = getRUWordsArr(cards);
 
   const validationsSchema = yup.object().shape({
     word: yup
       .string()
       .matches(/^[А-Яа-яЁё\s]+$/, 'Слово должно быть на русском языке! Цифры не допускаются!')
       .max(15, 'Длина слова не может быть более 15 символов!')
+      .notOneOf(ruWords, 'Карточка с таким словом уже есть!')
       .required('Введи слово на русском языке!'),
 
     picture: yup.mixed().required('Добавь картинку для слова!'),
@@ -52,19 +68,32 @@ const WordForm = (): JSX.Element => {
     dispatch(fetchImage(file));
   };
 
+  const initialValues = {
+    word: '',
+    picture: '',
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleOnSubmit = (values: { word: string }, { resetForm }: any) => {
+    dispatch(setErrorMessage(''));
+    const { word } = values;
+    dispatch(fetchENWord(word.toLowerCase()));
+    resetForm(initialValues);
+  };
+
+  React.useEffect(() => {
+    if (isDataSubmitted) {
+      if (newCard !== null) {
+        const newCards = [...cards, newCard];
+        window.localStorage.setItem('cards', JSON.stringify(newCards));
+        dispatch(setWordCards(newCards));
+        dispatch(setIsSubmitted(false));
+      }
+    }
+  }, [isDataSubmitted]);
+
   return (
-    <Formik
-      initialValues={{
-        word: '',
-        picture: '',
-      }}
-      validationSchema={validationsSchema}
-      validateOnBlur
-      onSubmit={(values) => {
-        const { word } = values;
-        dispatch(fetchENWord(word.toLowerCase()));
-      }}
-    >
+    <Formik initialValues={initialValues} validationSchema={validationsSchema} validateOnBlur onSubmit={handleOnSubmit}>
       {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, setFieldValue }) => (
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>

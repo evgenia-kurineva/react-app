@@ -24,23 +24,23 @@ export const fetchImageAPI = async (file: File): Promise<string> => {
 };
 // ///////////////////////////
 // ЕXAMPLE response.data ///////////////////
-// {asset_id: "913a4d3076b3e24cbcdaaf223d7d0f12"
+// {asset_id: "9***************12"
 // bytes: 5330
 // created_at: "2021-07-11T12:35:08Z"
-// etag: "2fcbdbcfb91b17a87d757f62607a626b"
+// etag: "2f****************6b"
 // format: "jpg"
 // height: 150
 // original_filename: "userAva"
 // placeholder: false
-// public_id: "darvin/mstwkozlscna1hasf6ll"
+// public_id: "******/m*****6ll"
 // resource_type: "image"
-// secure_url: "https://res.cloudinary.com/kurineva/image/upload/v1626006908/darvin/mstwkozlscna1hasf6ll.jpg"
-// signature: "4822d18c43a66ec8c5538358bd79f075ae98c14d"
+// secure_url: "https://res.cloudinary.com/*************************/**************/.jpg"
+// signature: "48****4d"
 // tags: []
 // type: "upload"
-// url: "http://res.cloudinary.com/kurineva/image/upload/v1626006908/darvin/mstwkozlscna1hasf6ll.jpg"
-// version: 1626006908
-// version_id: "5aa18bc3164f1d12a63af472c2a4ee9b"
+// url: "http://res.cloudinary.com/***/***/***/***/***/***/.jpg"
+// version: 16****08
+// version_id: "5aa1*****ee9b"
 // width: 180 ...}
 
 export const fetchTranslateAPI = async (ruWord: string): Promise<string> => {

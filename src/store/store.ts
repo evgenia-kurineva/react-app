@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import wordFormReducer from '../features/wordForm/wordFormSlice';
 import textbookReducer from '../features/textbook/textbookSlice';
 
 export const store = configureStore({
   reducer: {
+    wordForm: wordFormReducer,
     textbook: textbookReducer,
   },
 });
