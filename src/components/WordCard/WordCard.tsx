@@ -1,5 +1,6 @@
 import React from 'react';
 import soundImg from '../../assets/img/red_volume.svg';
+import { textToSpeech } from '../../utils/textToSpeech';
 import ImageIcon from '../ImageIcon/ImageIcon';
 import styles from './WordCard.module.scss';
 
@@ -11,7 +12,7 @@ type WordCardProps = {
 
 const WordCard = ({ imgSrc, wordInEN, wordInRU }: WordCardProps): JSX.Element => {
   const handleOnClick = () => {
-    console.log(1);
+    textToSpeech(wordInEN);
   };
   return (
     <div className={styles.container}>

@@ -33,11 +33,13 @@ const Textbook = (): JSX.Element => {
           <WordForm cards={cards} />
         </div>
       )}
-      <div className={styles.cards}>
-        {cards.map((card) => (
-          <WordCard key={card.wordRU} imgSrc={card.image} wordInEN={card.wordEN} wordInRU={card.wordRU} />
-        ))}
-      </div>
+      {cards.length > 0 && (
+        <div className={styles.cards}>
+          {cards.map((card) => (
+            <WordCard key={card.wordRU} imgSrc={card.image} wordInEN={card.wordEN} wordInRU={card.wordRU} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
