@@ -21,7 +21,6 @@ import {
 import { setWordCards } from '../../features/textbook/textbookSlice';
 import { WordCard } from '../../types/types';
 import { getRUWordsArr } from '../../utils/getRUWordsArr';
-
 import styles from './WordForm.module.scss';
 
 type WordFormProps = {
@@ -119,7 +118,7 @@ const WordForm = ({ cards }: WordFormProps): JSX.Element => {
                 <ImageIcon
                   src={paperclipImg}
                   alt="иконка для загрузки файла с изображением"
-                  size="small"
+                  size="medium"
                   color="black"
                 />
               </div>

@@ -1,34 +1,23 @@
 @import '../../constants/variables';
 
-.root {
+.container {
   background: $light;
   border: $border;
-  max-width: 420px;
-  padding: 3rem 2rem 2rem;
+  padding: 3rem 4rem 1rem;
   margin: 0.5rem;
+  text-align: center;
 
-  .container {
+  .img {
+    border: $border;
+    margin-bottom: 1.5rem;
+  }
+
+  .volume {
     display: flex;
-
-    .container_right {
-      display: flex;
-      flex-direction: column;
-      padding-left: 1.5rem;
-
-      .icon {
-        padding-bottom: 3rem;
-        cursor: pointer;
-      }
-    }
+    justify-content: center;
   }
-  .examples {
-    margin: 0.5rem;
-    padding-top: 1.5rem;
-  }
+
   .bold {
     font-weight: $fontWeight;
-  }
-  .margin {
-    margin: 0.5rem 0;
   }
 }
