@@ -15,6 +15,11 @@
     position: static;
     transform: translate(0, 0);
   }
+  @media (max-width: 350px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   p {
     padding: 0 1rem 0.5rem;
   }

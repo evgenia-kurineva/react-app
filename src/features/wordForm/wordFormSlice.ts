@@ -82,7 +82,7 @@ export const fetchENWord =
       try {
         const enWord = await fetchTranslateAPI(ruWord);
         if (enWord) {
-          dispatch(setNewWordCard({ wordRU: ruWord, image: '', wordEN: enWord }));
+          dispatch(setNewWordCard({ wordRU: ruWord, image: '', wordEN: enWord.toLowerCase() }));
           dispatch(setQuantityNotEnteredWords());
           dispatch(setIsSubmitted(true));
           dispatch(setCurrentImage(''));

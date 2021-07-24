@@ -1,0 +1,31 @@
+@import '../../constants/_variables.scss';
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media (max-width: 680px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .rule {
+    font-weight: $fontWeight;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem 2rem 0;
+    @media (max-width: 630px) {
+      flex-direction: column;
+      margin-left: 0;
+      margin-right: 0;
+      div {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

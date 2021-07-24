@@ -1,12 +1,13 @@
 @import '../../constants/_variables.scss';
 
 .container {
-  max-width: 644px;
+  max-width: 648px;
   background-color: $light;
   border: $border;
   text-align: center;
   margin: 0 auto 0.5rem;
-  padding: 2rem 0rem 3rem;
+  padding: 1rem 0rem 3rem;
+  box-sizing: border-box;
 }
 
 .cards {
