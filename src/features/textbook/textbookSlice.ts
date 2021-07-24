@@ -17,10 +17,11 @@ export const textbookSlice = createSlice({
     setWordCards: (state, action: PayloadAction<Array<WordCard>>) => {
       state.wordCards = action.payload;
     },
+    resetTextbook: () => initialState,
   },
 });
 
-export const { setWordCards } = textbookSlice.actions;
+export const { setWordCards, resetTextbook } = textbookSlice.actions;
 
 export const wordCards = (state: RootState): Array<WordCard> => state.textbook.wordCards;
 

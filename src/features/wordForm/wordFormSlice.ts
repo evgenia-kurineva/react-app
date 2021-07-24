@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { wordsCount } from '../../constants/constants';
 import { fetchTranslateAPI, fetchImageAPI } from '../../api/api';
 import { AppThunk, RootState } from '../../store/store';
 import { WordCard } from '../../types/types';
@@ -15,7 +16,7 @@ interface WordFormState {
 const initialState: WordFormState = {
   isLoading: false,
   currentImage: '',
-  quantityNotEnteredWords: 10,
+  quantityNotEnteredWords: wordsCount,
   errorMessage: '',
   newWordCard: null,
   isSubmitted: false,
@@ -45,6 +46,7 @@ export const wordFormSlice = createSlice({
     setQuantityNotEnteredWords: (state) => {
       state.quantityNotEnteredWords -= 1;
     },
+    resetWordForm: () => initialState,
   },
 });
 
@@ -55,6 +57,7 @@ export const {
   setErrorMessage,
   setNewWordCard,
   setIsSubmitted,
+  resetWordForm,
 } = wordFormSlice.actions;
 
 export const fetchImage =
