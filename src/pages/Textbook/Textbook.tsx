@@ -24,7 +24,9 @@ const Textbook = (): JSX.Element => {
 
   return (
     <div>
-      <div className={styles.container}>{cards.length < wordsCount ? <EnterWord cards={cards} /> : <Rules />}</div>
+      <div className={styles.container}>
+        {cards.length < wordsCount ? <EnterWord cards={cards} /> : <Rules cards={cards} />}
+      </div>
 
       {cards.length > 0 && (
         <div className={styles.cards}>

@@ -18,7 +18,7 @@ const WordCard = ({ imgSrc, wordInEN, wordInRU }: WordCardProps): JSX.Element =>
     <div className={styles.container}>
       <img className={styles.img} src={imgSrc} alt={`картинка для слова "${wordInRU}"`} />
       <div className={styles.volume} tabIndex={0} role="button" onClick={handleOnClick}>
-        <ImageIcon src={soundImg} alt="иконка для звука" size="small" color="red" />
+        <ImageIcon src={soundImg} alt="произнести" size="small" color="red" />
       </div>
       <p className={styles.bold}>{wordInEN}</p>
       <p>{wordInRU}</p>

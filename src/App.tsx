@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import Textbook from './pages/Textbook/Textbook';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
+import Game from './pages/Game/Game';
 
 const App = (): JSX.Element => (
   <div className="App">
@@ -15,7 +16,7 @@ const App = (): JSX.Element => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/textbook" component={Textbook} />
-          {/* <Route exact path="/game" component={Game} /> */}
+          <Route exact path="/game" component={Game} />
           <Route path="*" component={NotFound} />
         </Switch>
       </main>

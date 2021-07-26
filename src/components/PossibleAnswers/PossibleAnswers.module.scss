@@ -1,0 +1,10 @@
+@import '../../constants/_variables.scss';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $light;
+  border: $border;
+  margin: 2rem;
+  padding: 1rem 2rem;
+}

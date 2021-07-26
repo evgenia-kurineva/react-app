@@ -1,0 +1,16 @@
+@import '../../constants/_variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+  .wrapper {
+    // max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-evenly;
+    // margin: 0 auto;
+  }
+}
