@@ -1,5 +1,6 @@
 import React from 'react';
 import okImg from '../../assets/img/right.svg';
+
 import styles from './Hint.module.scss';
 
 type HintProps = {

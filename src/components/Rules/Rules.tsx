@@ -7,6 +7,7 @@ import { resetTextbook } from '../../features/textbook/textbookSlice';
 import { resetWordForm } from '../../features/wordForm/wordFormSlice';
 import { setGameCards, setNewPossibleAnswersAndCurrentGameCard } from '../../features/game/gameSlice';
 import { WordCard } from '../../types/types';
+
 import styles from './Rules.module.scss';
 
 type RulesProps = {

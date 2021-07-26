@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './CounterIcon.module.scss';
 
 type CounterIconProps = {

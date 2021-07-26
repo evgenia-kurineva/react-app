@@ -4,8 +4,9 @@ import WordCard from '../../components/WordCard/WordCard';
 import { setWordCards, wordCards } from '../../features/textbook/textbookSlice';
 import Rules from '../../components/Rules/Rules';
 import { wordsCount } from '../../constants/constants';
-import styles from './Textbook.module.scss';
 import EnterWord from '../../components/EnterWord/EnterWord';
+
+import styles from './Textbook.module.scss';
 
 const Textbook = (): JSX.Element => {
   const dispatch = useDispatch();

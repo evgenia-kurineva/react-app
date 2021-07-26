@@ -1,0 +1,12 @@
+@import '../../constants/_variables.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .bold {
+    font-weight: $fontWeight;
+    padding-left: 1rem;
+  }
+}

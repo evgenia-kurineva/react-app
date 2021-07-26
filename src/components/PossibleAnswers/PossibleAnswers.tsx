@@ -1,10 +1,12 @@
 import React from 'react';
+import { Result } from '../../types/types';
 import PossibleAnswersItem from '../PossibleAnswersItem/PossibleAnswersItem';
+
 import styles from './PossibleAnswers.module.scss';
 
 type PossibleAnswersProps = {
   possibleAnswers: Array<string>;
-  correctAnswer: string;
+  correctAnswer: Result;
 };
 
 const PossibleAnswers = ({ possibleAnswers, correctAnswer }: PossibleAnswersProps): JSX.Element => (

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
 import { getGameArray, getRUWordsArrayWithPlayWord } from '../../utils/index';
-import { WordCard } from '../../types/types';
+import { Result, WordCard } from '../../types/types';
 import { answersCount } from '../../constants/constants';
 
 interface GameState {
@@ -13,8 +13,8 @@ interface GameState {
   currentGameCardIndex: number;
   currentGameCard: WordCard;
   possibleAnswers: Array<string>;
-  wrongAnswers: Array<string>;
-  correctAnswers: Array<string>;
+  wrongAnswers: Array<Result>;
+  correctAnswers: Array<Result>;
 }
 
 const initialState: GameState = {
@@ -65,10 +65,10 @@ export const gameSlice = createSlice({
     setIsFirstClick: (state, action: PayloadAction<boolean>) => {
       state.isFirstClick = action.payload;
     },
-    setCorrectAnswers: (state, action: PayloadAction<string>) => {
+    setCorrectAnswers: (state, action: PayloadAction<Result>) => {
       state.correctAnswers.push(action.payload);
     },
-    setWrongAnswers: (state, action: PayloadAction<string>) => {
+    setWrongAnswers: (state, action: PayloadAction<Result>) => {
       state.wrongAnswers.push(action.payload);
     },
     resetGame: () => initialState,
@@ -88,8 +88,19 @@ export const {
 } = gameSlice.actions;
 
 export const currentGameCard = (state: RootState): WordCard => state.game.currentGameCard;
+
 export const possibleGameAnswers = (state: RootState): Array<string> => state.game.possibleAnswers;
+
 export const isShowGameAnswer = (state: RootState): boolean => state.game.isShowAnswer;
+
+export const isShowEnd = (state: RootState): boolean => state.game.isShowGameEnd;
+
+export const isShowResult = (state: RootState): boolean => state.game.isShowGameResult;
+
 export const isFirstClickOnAnswer = (state: RootState): boolean => state.game.isFirstClick;
+
+export const wrongGameAnswers = (state: RootState): Array<Result> => state.game.wrongAnswers;
+
+export const correctGameAnswers = (state: RootState): Array<Result> => state.game.correctAnswers;
 
 export default gameSlice.reducer;

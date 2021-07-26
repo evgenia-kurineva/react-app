@@ -5,8 +5,9 @@ import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Textbook from './pages/Textbook/Textbook';
 import NotFound from './pages/NotFound/NotFound';
-import './App.scss';
 import Game from './pages/Game/Game';
+
+import './App.scss';
 
 const App = (): JSX.Element => (
   <div className="App">

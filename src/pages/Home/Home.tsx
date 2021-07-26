@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+
 import styles from './Home.module.scss';
 
 const Home = (): JSX.Element => (

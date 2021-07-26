@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { messageIfOnlyCorrectAnswers, messageIfWasWrongAnswers } from '../../constants/constants';
 import Button from '../Button/Button';
-import ImageIcon from '../ImageIcon/ImageIcon';
-import closeImg from '../../assets/img/close.svg';
+import CloseBtn from '../CloseBtn/CloseBtn';
+import { setIsShowGameEnd, setIsShowGameResult } from '../../features/game/gameSlice';
+
 import styles from './GameEnd.module.scss';
 
 type GameEndProps = {
@@ -11,22 +13,21 @@ type GameEndProps = {
 };
 
 const GameEnd = ({ countCorrectAnswers, countWrongAnswers }: GameEndProps): JSX.Element => {
-  const handleShowResult = () => {
-    console.log('Result');
-  };
+  const dispatch = useDispatch();
 
-  const handleOnCloseClick = () => {
-    console.log('Close');
+  const handleShowResult = () => {
+    dispatch(setIsShowGameResult(true));
+    dispatch(setIsShowGameEnd(false));
   };
 
   return (
     <div className={styles.container}>
-      <div tabIndex={0} role="button" onClick={handleOnCloseClick}>
-        <ImageIcon src={closeImg} alt="закрыть" size="large" color="black" />
+      <div className={styles.close}>
+        <CloseBtn />
       </div>
-      {countWrongAnswers > 0 ? <p>{messageIfOnlyCorrectAnswers}</p> : <p>{messageIfWasWrongAnswers}</p>}
+      {countWrongAnswers === 0 ? <p>{messageIfOnlyCorrectAnswers}</p> : <p>{messageIfWasWrongAnswers}</p>}
       <p>
-        правильно:<span className={styles.correct}>{countCorrectAnswers}</span>, ошибок:
+        правильно: <span className={styles.correct}>{countCorrectAnswers}</span>, ошибок:{' '}
         <span className={styles.wrong}>{countWrongAnswers}</span>
       </p>
       <div tabIndex={0} role="button" onClick={handleShowResult}>
