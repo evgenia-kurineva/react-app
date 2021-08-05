@@ -5,6 +5,7 @@ import { correctGameAnswers, isShowEnd, isShowResult, wrongGameAnswers } from '.
 import GameComponent from '../../components/GameComponent/GameComponent';
 import GameEnd from '../../components/GameEnd/GameEnd';
 import GameResults from '../../components/GameResults/GameResults';
+import GameHeader from '../../components/GameHeader/GameHeader';
 
 const Game = (): JSX.Element => {
   const isShowGameEnd = useSelector(isShowEnd);
@@ -14,6 +15,7 @@ const Game = (): JSX.Element => {
 
   return (
     <>
+      <GameHeader />
       {!isShowGameEnd && !isShowGameResult && <GameComponent />}
       {isShowGameEnd && <GameEnd countCorrectAnswers={correctAnswers.length} countWrongAnswers={wrongAnswers.length} />}
       {isShowGameResult && <GameResults correctAnswers={correctAnswers} wrongAnswers={wrongAnswers} />}

@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $light;
 }
 .black {
   border: $border;
@@ -13,12 +14,21 @@
 .red {
   border: $border_red;
 }
-.small {
+.small,
+.close {
   width: 30px;
   height: 30px;
+}
+.small {
   .img {
     width: 20px;
     height: 20px;
+  }
+}
+.close {
+  .img {
+    width: 15px;
+    height: 15px;
   }
 }
 .medium {
@@ -29,7 +39,6 @@
   width: 95px;
   height: 95px;
   border: 3px solid #000;
-  background-color: $light;
 }
 .img {
   cursor: pointer;

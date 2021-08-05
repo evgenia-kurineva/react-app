@@ -15,7 +15,7 @@ const CloseBtn = (): JSX.Element => {
 
   return (
     <NavLink to="/textbook" onClick={handleOnCloseClick}>
-      <ImageIcon src={closeImg} alt="закрыть" size={Sizes.SMALL} color={Colors.BLACK} />
+      <ImageIcon src={closeImg} alt="закрыть" size={Sizes.CLOSE} color={Colors.BLACK} />
     </NavLink>
   );
 };

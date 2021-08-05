@@ -12,6 +12,7 @@ export enum Sizes {
   SMALL = 'small',
   MEDIUM = 'medium',
   LARGE = 'large',
+  CLOSE = 'close',
 }
 
 export enum Colors {
